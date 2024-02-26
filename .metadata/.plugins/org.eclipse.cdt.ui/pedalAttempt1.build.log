@@ -1,0 +1,10 @@
+21:53:18 **** Incremental Build of configuration Debug for project pedalAttempt1 ****
+make -j12 all 
+arm-none-eabi-size  pedalAttempt1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25540	     36	   2828	  28404	   6ef4	pedalAttempt1.elf
+Finished building: default.size.stdout
+ 
+
+21:53:18 Build Finished. 0 errors, 0 warnings. (took 273ms)
+

@@ -1,0 +1,12 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+activeLaunchTarget=null\:---
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:pedalAttempt1 Debug,org.eclipse.launchbar.core.descriptorType.default\:guitarPedal2Threads Debug
+eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:pedalAttempt1\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:pedalAttempt1\ Debug/activeLaunchTarget=null\:---
+org.eclipse.launchbar.core.descriptorType.default\:guitarPedal2Threads\ Debug/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:guitarPedal2Threads\ Debug/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:pedalAttempt1\ Debug/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:pedalAttempt1\ Debug/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

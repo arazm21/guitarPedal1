@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;guitarPedal2&apos; to &apos;guitarPedal2Threads&apos;" description="Rename resource &apos;guitarPedal2&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/guitarPedal2" name="guitarPedal2Threads" stamp="1707843967503" updateReferences="true"/>
+</session>

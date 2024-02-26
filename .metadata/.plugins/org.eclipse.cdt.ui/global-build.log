@@ -1,0 +1,14 @@
+22:06:47 **** Incremental Build of configuration Debug for project guitarPedal2Threads ****
+make -j12 all 
+arm-none-eabi-size  guitarPedal2Threads.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36732	     24	  21680	  58436	   e444	guitarPedal2Threads.elf
+Finished building: default.size.stdout
+ 
+22:06:51 **** Incremental Build of configuration Debug for project guitarPedal2Threads ****
+make -j12 all 
+arm-none-eabi-size  guitarPedal2Threads.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36732	     24	  21680	  58436	   e444	guitarPedal2Threads.elf
+Finished building: default.size.stdout
+ 

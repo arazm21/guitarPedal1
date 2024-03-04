@@ -16,4 +16,4 @@ GND-gnd
 --
 LEDTEST-PA0
 --
-interuptButton-PA6
+interuptButton-//PA6//PB14

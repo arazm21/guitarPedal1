@@ -9,6 +9,7 @@
 1. 3-LUG guitar pedal dc jack
 2. potentiometer's knobs
 3. schmitt trigger DIP-14, DIP-8
+4. OLED
 -------------------------------
    pin configuration
 -----   

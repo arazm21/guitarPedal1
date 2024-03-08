@@ -10,6 +10,7 @@
 2. potentiometer's knobs
 3. schmitt trigger DIP-14, DIP-8
 4. OLED
+5. LED bezel
 -------------------------------
    pin configuration
 -----   

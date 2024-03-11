@@ -28,3 +28,5 @@ interruptLED2-PC3
 --
 interuptButton-PA6
 interuptButton2-PA7
+rotation1_1-PA10
+rotation1_2-PA11

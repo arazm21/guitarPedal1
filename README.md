@@ -22,8 +22,9 @@ GND-gnd
 --
 
 LEDTEST-PA0
-interruptLED-PA4
+interruptLED-PA9
 interruptLED2-PC3
+
 --
 interuptButton-PA6
 interuptButton2-PA7

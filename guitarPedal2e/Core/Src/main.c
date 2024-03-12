@@ -21,13 +21,19 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ssd1306.h"
+//#include "ssd13062.h"
 #include "ssd1306_tests.h"
+//#include "ssd1306.c"
+//#include "ssd1306_tests.c"
 #include "stm32f4xx_it.h"
 #include "semphr.h"
-
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -624,6 +630,7 @@ uint8_t modeNum2=0;
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int totalNum=10;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   /* Prevent unused argument(s) compilation warning */
@@ -637,13 +644,25 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	  HAL_GPIO_TogglePin(interruptLED_GPIO_Port, interruptLED_Pin);
       xSemaphoreGiveFromISR(screenChangeSem, NULL); // Give semaphore from interrupt
-
+      totalNum++;
   }else if(GPIO_Pin==interruptButton2_Pin){
 	  modeNum2++;
 	  	  if(modeNum2>1)modeNum2=0;
 
 	  	  HAL_GPIO_TogglePin(interruptButton2_GPIO_Port, interruptLED2_Pin);
 	        xSemaphoreGiveFromISR(screenChangeSem, NULL); // Give semaphore from interrupt
+	        totalNum--;
+  }else if(GPIO_Pin==rotation1_1_Pin){
+	  int res = HAL_GPIO_ReadPin(rotation1_2_GPIO_Port,rotation1_2_Pin);
+	  //int res = 0;
+	  if(res==0){
+		  totalNum++;
+
+	  }else{
+		  totalNum--;
+	  }
+	  xSemaphoreGiveFromISR(screenChangeSem, NULL);
+
 
   }
 
@@ -696,6 +715,7 @@ int main(void)
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   screenChangeSem = xSemaphoreCreateBinary();
+
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* USER CODE BEGIN RTOS_TIMERS */
@@ -728,7 +748,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-
+  xSemaphoreGiveFromISR(screenChangeSem, NULL);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -937,7 +957,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, interruptLED_Pin|LD2_Pin|GPIO_PIN_8|interruptLED2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LD2_Pin|GPIO_PIN_8|interruptLED_Pin|interruptLED2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -945,8 +965,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : interruptLED_Pin LD2_Pin PA8 interruptLED2_Pin */
-  GPIO_InitStruct.Pin = interruptLED_Pin|LD2_Pin|GPIO_PIN_8|interruptLED2_Pin;
+  /*Configure GPIO pins : LD2_Pin PA8 interruptLED_Pin interruptLED2_Pin */
+  GPIO_InitStruct.Pin = LD2_Pin|GPIO_PIN_8|interruptLED_Pin|interruptLED2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -963,6 +983,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(myButtonPin2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : rotation1_1_Pin */
+  GPIO_InitStruct.Pin = rotation1_1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(rotation1_1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : rotation1_2_Pin */
+  GPIO_InitStruct.Pin = rotation1_2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(rotation1_2_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 5, 0);
@@ -1020,55 +1052,68 @@ void StartOled(void *argument)
 {
   /* USER CODE BEGIN StartOled */
   /* Infinite loop */
-  for(;;)
-  {
-	  if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	  ssd1306_Fill(Black);
-	      ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame0,128,64,White);
-	      osDelay(10);
-	      ssd1306_UpdateScreen();
-	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	      xSemaphoreTake(screenChangeSem, portMAX_DELAY);
+  for(;;){
+//	 // if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//	  ssd1306_Fill(Black);
+//	      ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame0,128,64,White);
+//	      osDelay(10);
+//	      ssd1306_UpdateScreen();
+//	 // }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//
+//	      ssd1306_Fill(Black);
+//	          ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame1,128,64,White);
+//	          osDelay(10);
+//	          ssd1306_UpdateScreen();
+//
+//	 // }
+//	          if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//	          ssd1306_Fill(Black);
+//	              ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame2,128,64,White);
+//	              osDelay(10);
+//	              ssd1306_UpdateScreen();
+//
+//	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//	              ssd1306_Fill(Black);
+//	                  ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame3,128,64,White);
+//	                  osDelay(10);
+//	                  ssd1306_UpdateScreen();
+//
+//	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//	                  ssd1306_Fill(Black);
+//	                      ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame4,128,64,White);
+//	                      osDelay(10);
+//	                      ssd1306_UpdateScreen();
+//	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//	                      ssd1306_Fill(Black);
+//	                          ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame5,128,64,White);
+//	                          osDelay(100);
+//	                          ssd1306_UpdateScreen();
+//	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//	                          ssd1306_Fill(Black);
+//	                              ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame6,128,64,White);
+//	                              osDelay(100);
+//	                              ssd1306_UpdateScreen();
+//	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+//	                              ssd1306_Fill(Black);
+//	                                  ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame7,128,64,White);
+//	                                  osDelay(100);
+//	                                  ssd1306_UpdateScreen();
+//	  }
+   if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
+	  char snum[5];
+	  itoa(totalNum, snum, 10);
+
 	      ssd1306_Fill(Black);
-	          ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame1,128,64,White);
-	          osDelay(10);
-	          ssd1306_UpdateScreen();
 
-	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	          ssd1306_Fill(Black);
-	              ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame2,128,64,White);
-	              osDelay(10);
-	              ssd1306_UpdateScreen();
+	      ssd1306_SetCursor(44, 30);
+	      ssd1306_WriteString(snum, Font_16x26, White);
+	      ssd1306_UpdateScreen();
+	      xSemaphoreGiveFromISR(screenChangeSem, NULL);
 
-	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	              ssd1306_Fill(Black);
-	                  ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame3,128,64,White);
-	                  osDelay(10);
-	                  ssd1306_UpdateScreen();
-
-	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	                  ssd1306_Fill(Black);
-	                      ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame4,128,64,White);
-	                      osDelay(10);
-	                      ssd1306_UpdateScreen();
-	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	                      ssd1306_Fill(Black);
-	                          ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame5,128,64,White);
-	                          osDelay(100);
-	                          ssd1306_UpdateScreen();
-	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	                          ssd1306_Fill(Black);
-	                              ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame6,128,64,White);
-	                              osDelay(100);
-	                              ssd1306_UpdateScreen();
-	  }if (xSemaphoreTake(screenChangeSem, portMAX_DELAY)){
-	                              ssd1306_Fill(Black);
-	                                  ssd1306_DrawBitmap(0,0,epd_bitmap_catFrame7,128,64,White);
-	                                  osDelay(100);
-	                                  ssd1306_UpdateScreen();
-	  }
-
+      }
   }
+
+
   osThreadTerminate(NULL);
   /* USER CODE END StartOled */
 }

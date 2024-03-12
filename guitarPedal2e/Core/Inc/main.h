@@ -66,8 +66,6 @@ void Error_Handler(void);
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
-#define interruptLED_Pin GPIO_PIN_4
-#define interruptLED_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
 #define interruptButton_Pin GPIO_PIN_6
@@ -78,6 +76,13 @@ void Error_Handler(void);
 #define interruptButton2_EXTI_IRQn EXTI9_5_IRQn
 #define myButtonPin2_Pin GPIO_PIN_14
 #define myButtonPin2_GPIO_Port GPIOB
+#define interruptLED_Pin GPIO_PIN_9
+#define interruptLED_GPIO_Port GPIOA
+#define rotation1_1_Pin GPIO_PIN_10
+#define rotation1_1_GPIO_Port GPIOA
+#define rotation1_1_EXTI_IRQn EXTI15_10_IRQn
+#define rotation1_2_Pin GPIO_PIN_11
+#define rotation1_2_GPIO_Port GPIOA
 #define interruptLED2_Pin GPIO_PIN_12
 #define interruptLED2_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13

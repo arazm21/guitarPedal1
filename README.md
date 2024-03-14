@@ -11,6 +11,8 @@
 3. schmitt trigger DIP-14, DIP-8
 4. OLED
 5. LED bezel
+6. 5 pin encoder
+7. sd card
 -------------------------------
    pin configuration
 -----   

@@ -13,6 +13,7 @@
 5. LED bezel
 6. 5 pin encoder
 7. sd card
+8. USB A to USB mini B
 -------------------------------
    pin configuration
 -----   

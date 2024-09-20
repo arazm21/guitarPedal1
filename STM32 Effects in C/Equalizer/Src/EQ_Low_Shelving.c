@@ -14,9 +14,10 @@ void EQ_Low_Shelving_Init(LS *filt, float fs, float fc, float V0){
 //	EQ_Low_Shelving_Check_Bounds(filt, fc, V0);
 
 	/* Set up filter parameters */
+	filt->fs = fs;
 	filt->fc = fc;
 	filt->V0 = V0;
-	EQ_Low_Shelving_Set_Params(filt, fs, filt->fc, filt->V0);
+	EQ_Low_Shelving_Set_Params(filt, filt->fc, filt->V0);
 
 	/* Clear first samples */
 	filt->x_1=0.0f;
@@ -39,7 +40,7 @@ void EQ_Low_Shelving_Check_Bounds(LS *filt, float fc, float V0){
 }
 
 
-void EQ_Low_Shelving_Set_Params(LS *filt, float fs, float fc, float V0){
+void EQ_Low_Shelving_Set_Params(LS *filt, float fc, float V0){
 
 	//EQ_Low_Shelving_Check_Bounds(filt, fc, V0);
 
@@ -48,7 +49,7 @@ void EQ_Low_Shelving_Set_Params(LS *filt, float fs, float fc, float V0){
 	V0 = 0.1f + 0.039f*V0;
 
 
-	float K = tanf(M_PI*filt->fc/fs);
+	float K = tanf(M_PI*filt->fc/filt->fs);
 	float K_2 = K*K;
 
 	if(filt->V0 >= 1){ // BOOST

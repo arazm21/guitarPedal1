@@ -25,12 +25,13 @@ typedef struct{
 
 	float V0;
 	float fc;
+	float fs;
 
 } HS;
 
 void EQ_High_Shelving_Init(HS *filt, float fs, float fc, float V0);
 void EQ_High_Shelving_Check_Bounds(HS *filt, float fc, float V0);
-void EQ_High_Shelving_Set_Params(HS *filt, float fs, float fc, float V0);
+void EQ_High_Shelving_Set_Params(HS *filt, float fc, float V0);
 float EQ_High_Shelving_Update(HS *filt, float x);
 
 

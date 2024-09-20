@@ -131,20 +131,20 @@ int main(void)
   HAL_TIM_Base_Start(&htim8);
 
 
-  // Fc = 20 + 19.8f*0 = 20 Hz
-  EQ_High_1st_Init(&EQ_HP_1st, Fs, 0);
+  // Fc = 20 + 19.8f*0.0f = 20 Hz
+  EQ_High_1st_Init(&EQ_HP_1st, Fs, 0.0f);
 
-  // Fc = 80 + 39.2*10 = 400 Hz
-  EQ_Low_Butter_Init(&EQ_LP_Butter, Fs, 10);
+  // Fc = 80 + 39.2*10.0f = 400 Hz
+  EQ_Low_Butter_Init(&EQ_LP_Butter, Fs, 10.0f);
 
-  // Fc = 80 + 2.2*10 = 102 Hz, Gain = 4
-  EQ_Low_Shelving_Init(&EQ_LS, Fs, 10, 4);
+  // Fc = 80 + 2.2f*10 = 102 Hz, Gain (V0) = 0.1f + 0.039f*0.0f
+  EQ_Low_Shelving_Init(&EQ_LS, Fs, 10.0f, 0.0f);
 
-  // Fc = 3,000 + 170*20 = 6,4000 Hz, Gain = 4
-  EQ_High_Shelving_Init(&EQ_HS, Fs, 20, 0.2);
+  // Fc = 3,000 + 170*20.0f = 6,4000 Hz, Gain = 4
+  EQ_High_Shelving_Init(&EQ_HS, Fs, 20.0f, 0.2f);
 
-  // Fc = 80.0f + 19.2*5 = 176 Hz, BW = 20/100 * Fc*0.5 + 0.1 = 17.7, Gain = 0.05 + 0.0395*50 = 2.025;
-  EQ_Peaking_Init(&EQ_Peaking, Fs, 5, 20, 50);
+  // Fc = 80.0f + 19.2*5.0f = 176 Hz, BW = 20.0f/100 * Fc*0.5 + 0.1 = 17.7, Gain = 0.05 + 0.0395*50.0f = 2.025;
+  EQ_Peaking_Init(&EQ_Peaking, Fs, 5.0f, 20.0f, 50.0f);
 
 
 

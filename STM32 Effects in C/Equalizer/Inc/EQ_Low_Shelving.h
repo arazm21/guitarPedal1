@@ -20,11 +20,12 @@ typedef struct{
 
 	float V0;
 	float fc;
+	float fs;
 
 } LS;
 
 void EQ_Low_Shelving_Init(LS *filt, float fs, float fc, float V0);
-void EQ_Low_Shelving_Set_Params(LS *filt, float fs, float fc, float V0);
+void EQ_Low_Shelving_Set_Params(LS *filt, float fc, float V0);
 void EQ_Low_Shelving_Check_Bounds(LS *filt, float fc, float V0);
 float EQ_Low_Shelving_Update(LS *filt, float x);
 

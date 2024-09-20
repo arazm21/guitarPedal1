@@ -13,9 +13,10 @@ void EQ_High_Shelving_Init(HS *filt, float fs, float fc, float V0){
 //	EQ_High_Shelving_Check_Bounds(filt, fc, V0);
 
 	/* Set up filter parameters */
+	filt->fs = fs;
 	filt->fc = fc;
 	filt->V0 = V0;
-	EQ_High_Shelving_Set_Params(filt, fs, filt->fc, filt->V0);
+	EQ_High_Shelving_Set_Params(filt, filt->fc, filt->V0);
 
 	/* Clear first samples */
 	filt->x_1=0.0f;
@@ -36,17 +37,17 @@ void EQ_High_Shelving_Check_Bounds(HS *filt, float fc, float V0){
 	filt->fc = fc;
 }
 
-void EQ_High_Shelving_Set_Params(HS *filt, float fs, float fc, float V0){
+void EQ_High_Shelving_Set_Params(HS *filt, float fc, float V0){
 
 	//EQ_High_Shelving_Check_Bounds(filt, fc, V0);
 
 
-	// fc, V0 = [0 - 100] input get mapped to [3,000-20,000] Hz and [0.1-4] respectively
-	fc = 3000.0f + 170.0f*fc;
+	// fc, V0 = [0 - 100] input get mapped to [1,000-10,000] Hz and [0.1-4] respectively
+	fc = 1000.0f + 90.0f*fc;
 	V0 = 0.1f + 0.039f*V0;
 
 
-	float K = tanf(M_PI*filt->fc/fs);
+	float K = tanf(M_PI*filt->fc/filt->fs);
 	float K_2 = K*K;
 
 	if(filt->V0 >= 1){ // BOOST

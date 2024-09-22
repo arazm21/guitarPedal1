@@ -32,7 +32,7 @@ float MOD_Tremolo_Update(Tremolo *trem, float x){
 		trem->n = 0;
 	}
 
-	float y = x * cosf(2.0f*M_PI* trem->f_lfo * trem->n / trem->fs);
+	float y = (1 - trem->depth)*x + trem->depth*x*cosf(2.0f*M_PI* trem->f_lfo * trem->n / trem->fs);
 	trem->n++;
 
 	return y;

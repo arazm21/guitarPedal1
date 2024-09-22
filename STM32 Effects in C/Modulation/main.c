@@ -30,7 +30,7 @@
 #include <math.h>
 
 #include "MOD_Tremolo.h"
-
+#include "MOD_Flanger_1.h"
 
 /* USER CODE END Includes */
 
@@ -67,6 +67,9 @@ uint32_t dac_buffer[N];
 
 Tremolo MOD_Tremolo;
 
+Flanger_1 MOD_Flanger_1;
+float x_ptr[1000];
+float y_ptr_flanger[1000];
 
 
 /* USER CODE END PV */
@@ -125,6 +128,9 @@ int main(void)
   // Depth = 0.01f*80.0f, LFO Frequency = 0.1 + 0.139f*70.0f;
   MOD_Tremolo_init(&MOD_Tremolo, Fs, 80.0f, 70.0f);
 
+  //
+
+  MOD_Flanger_1_init(&MOD_Flanger_1, Fs, 70, 50, 0.7, 0.7, 0.7, x_ptr, y_ptr_flanger, sizeof(x_ptr));
 
   /* USER CODE END 2 */
 

@@ -28,12 +28,10 @@ typedef struct{
 
 
 
-} MOD_Tremolo;
+} Tremolo;
 
-void MOD_Tremolo_init(MOD_Tremolo *trem, float fs, float depth, float rate);
-void MOD_Tremolo_Set_Params(MOD_Tremolo *trem, float depth, float rate);
-float MOD_Tremolo_Update(MOD_Tremolo *trem, float x);
-
-
+void MOD_Tremolo_init(Tremolo *trem, float fs, float depth, float rate);
+void MOD_Tremolo_Set_Params(Tremolo *trem, float depth, float rate);
+float MOD_Tremolo_Update(Tremolo *trem, float x);
 
 #endif /* INC_MOD_TREMOLO_H_ */

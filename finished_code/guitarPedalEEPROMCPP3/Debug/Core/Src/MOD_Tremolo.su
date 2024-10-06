@@ -1,0 +1,3 @@
+../Core/Src/MOD_Tremolo.cpp:10:6:void MOD_Tremolo_init(MOD_Tremolo*, float, float, float)	24	static
+../Core/Src/MOD_Tremolo.cpp:20:6:void MOD_Tremolo_Set_Params(MOD_Tremolo*, float, float)	24	static
+../Core/Src/MOD_Tremolo.cpp:29:7:float MOD_Tremolo_Update(MOD_Tremolo*, float)	40	static

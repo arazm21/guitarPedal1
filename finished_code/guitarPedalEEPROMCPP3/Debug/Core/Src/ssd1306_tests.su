@@ -1,0 +1,12 @@
+../Core/Src/ssd1306_tests.c:123:6:ssd1306_TestBorder	16	static
+../Core/Src/ssd1306_tests.c:149:6:ssd1306_TestFonts1	16	static
+../Core/Src/ssd1306_tests.c:182:6:ssd1306_TestFonts2	32	static
+../Core/Src/ssd1306_tests.c:204:6:ssd1306_TestFPS	112	static
+../Core/Src/ssd1306_tests.c:242:6:ssd1306_TestLine	16	static
+../Core/Src/ssd1306_tests.c:250:6:ssd1306_TestRectangle	32	static
+../Core/Src/ssd1306_tests.c:260:6:ssd1306_TestRectangleFill	16	static
+../Core/Src/ssd1306_tests.c:268:6:ssd1306_TestCircle	16	static
+../Core/Src/ssd1306_tests.c:283:6:ssd1306_TestArc	16	static
+../Core/Src/ssd1306_tests.c:290:6:ssd1306_TestPolyline	32	static
+../Core/Src/ssd1306_tests.c:307:6:ssd1306_TestDrawBitmap	4	static
+../Core/Src/ssd1306_tests.c:343:6:ssd1306_TestAll	8	static

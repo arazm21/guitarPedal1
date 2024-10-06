@@ -1,0 +1,3 @@
+../Core/Src/cubic_overdrive.cpp:11:6:void cubic_overdrive_init(cubic_overdrive*, float, float)	2
+../Core/Src/cubic_overdrive.cpp:19:7:float cubic_overdrive_update(cubic_overdrive*, float)	1
+S:\ST\STM32CubeIDE_1.14.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235\tools\bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/include/c++/11.3.1/cmath:415:5:constexpr typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::pow(_Tp, _Up) [with _Tp = float; _Up = unsigned char]	1

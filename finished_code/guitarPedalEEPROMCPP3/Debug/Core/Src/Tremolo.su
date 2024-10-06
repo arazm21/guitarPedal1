@@ -1,0 +1,4 @@
+../Core/Src/Tremolo.cpp:10:6:void Tremolo_init(Tremolo*, float, float, float)	24	static
+../Core/Src/Tremolo.cpp:31:6:void Tremolo_set_depth(Tremolo*, float)	16	static
+../Core/Src/Tremolo.cpp:42:6:void Tremolo_set_LFO_frequency(Tremolo*, float)	16	static
+../Core/Src/Tremolo.cpp:61:7:float Tremolo_update(Tremolo*, float)	16	static

@@ -1,0 +1,5 @@
+../Core/Src/Exp_Distortion.cpp:9:6:void Exp_Distortion_Init_Default(Exp_Dist*, float)	1
+../Core/Src/Exp_Distortion.cpp:13:6:void Exp_Distortion_Init(Exp_Dist*, float, float)	1
+../Core/Src/Exp_Distortion.cpp:18:6:void Exp_Distortion_Set_Gain(Exp_Dist*, float)	1
+../Core/Src/Exp_Distortion.cpp:28:6:void Exp_Distortion_Set_Symmetry(Exp_Dist*, float)	1
+../Core/Src/Exp_Distortion.cpp:38:7:float Exp_Distortion_Update(Exp_Dist*, float)	2

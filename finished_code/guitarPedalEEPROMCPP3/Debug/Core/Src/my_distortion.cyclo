@@ -1,0 +1,2 @@
+../Core/Src/my_distortion.cpp:10:6:void my_disortion_init(my_distortion_struct*)	1
+../Core/Src/my_distortion.cpp:50:7:float my_distortion_update(my_distortion_struct*, float)	8
